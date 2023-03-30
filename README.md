@@ -1,2 +1,4 @@
-# utssig
- UTS Sistem Informasi Geografis_Mochamad Nafis Akmalussyifa_119140135
+# UTS SISTEM INFORMASI GEOGRAFIS
+ Nama : Mochamad Nafis Akmalussyifa
+ NIM : 119140135
+ Dosen Pengampu : Mugi Praseptiawan, S.T., M.Kom
