@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+      integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+      integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+      crossorigin=""
+    ></script>
+    <script src="Peta_Admin_Balam.js"></script>
+    <style>
+      #map {
+        height: 100vh;
+        width: 100%;
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css"
+    />
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+
+    <title>UTS SIG</title>
+  </head>
+  <body>
+    <p>By Mochamad Nafis Akmalussyifa 119140135</p>
+    <div id="map"></div>
+  </body>
+  <script>
+    var map = L.map("map").setView(
+      [-5.378086121603646, 105.24670545808769],
+      13
+    );
+    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 19,
+      attribution:
+        '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    }).addTo(map);
+
+    var balamData = L.geoJSON(balam).addTo(map);
+    balam;
+
+    var myIcon = L.icon({ iconUrl: "icon.png", iconSize: [35, 35] });
+
+    L.marker([-5.444084189768338, 105.28243945459533], { icon: myIcon })
+      .addTo(map)
+      .bindPopup("Bumi Waras.");
+    L.marker([-5.416744088310271, 105.25986313214547], { icon: myIcon })
+      .addTo(map)
+      .bindPopup("Enggal.");
+    L.marker([-5.413787144374442, 105.28554657909997], { icon: myIcon })
+      .addTo(map)
+      .bindPopup("Kedamaian.");
+    L.marker([-5.376098567431158, 105.2588030181951], { icon: myIcon })
+      .addTo(map)
+      .bindPopup("Kedaton.");
+    L.marker([-5.394918340537691, 105.20744429563331], { icon: myIcon })
+      .addTo(map)
+      .bindPopup("Kemiling.");
+    L.marker([-5.372234753526901, 105.2555359739989], { icon: myIcon })
+      .addTo(map)
+      .bindPopup("Labuhan Ratu.");
+    L.marker([-5.387920272459764, 105.22851422721583], { icon: myIcon })
+      .addTo(map)
+      .bindPopup("Langkapura.");
+    L.marker([-5.464827862457509, 105.32641398094526], { icon: myIcon })
+      .addTo(map)
+      .bindPopup("Panjang.");
+    L.marker([-5.355965167044637, 105.24055984979873], { icon: myIcon })
+      .addTo(map)
+      .bindPopup("Rajabasa.");
+    L.marker([-5.4058799378623315, 105.31140740713218], { icon: myIcon })
+      .addTo(map)
+      .bindPopup("Sukabumi.");
+    L.marker([-5.376336670114627, 105.29924078061242], { icon: myIcon })
+      .addTo(map)
+      .bindPopup("Sukarame.");
+    L.marker([-5.361404879272499, 105.27278266756286], { icon: myIcon })
+      .addTo(map)
+      .bindPopup("Tanjung Senang.");
+    L.marker([-5.406626171939233, 105.235467737512], { icon: myIcon })
+      .addTo(map)
+      .bindPopup("Tanjung Karang Barat.");
+    L.marker([-5.412164059317741, 105.25272605562648], { icon: myIcon })
+      .addTo(map)
+      .bindPopup("Tanjung Karang Pusat.");
+    L.marker([-5.415555030750404, 105.26641001177013], { icon: myIcon })
+      .addTo(map)
+      .bindPopup("Tanjung Karang Timur.");
+    L.marker([-5.442588991934177, 105.23832201630287], { icon: myIcon })
+      .addTo(map)
+      .bindPopup("Teluk Betung Barat.");
+    L.marker([-5.445797439756074, 105.25851240509337], { icon: myIcon })
+      .addTo(map)
+      .bindPopup("Teluk Betung Selatan.");
+    L.marker([-5.470276694512688, 105.24071464034974], { icon: myIcon })
+      .addTo(map)
+      .bindPopup("Teluk Betung Timur.");
+    L.marker([-5.432074003434643, 105.24010737021861], { icon: myIcon })
+      .addTo(map)
+      .bindPopup("Teluk Betung Utara.");
+    L.marker([-5.392949193704218, 105.27327199208499], { icon: myIcon })
+      .addTo(map)
+      .bindPopup("Wayhalim.");
+
+    var popup = L.popup();
+
+    function onMapClick(e) {
+      popup
+        .setLatLng(e.latlng)
+        .setContent("Kamu menekan pada " + e.latlng.toString())
+        .openOn(map);
+    }
+
+    map.on("click", onMapClick);
+
+    L.Control.geocoder().addTo(map);
+
+    L.Control.Watermark = L.Control.extend({
+      onAdd: function (map) {
+        var img = L.DomUtil.create("img");
+        img.src = "Logo_ITERA.png";
+        img.style.width = "200px";
+        return img;
+      },
+      onRemove: function (map) {},
+    });
+
+    L.control.watermark = function (opts) {
+      return new L.Control.Watermark(opts);
+    };
+
+    L.control.watermark().addTo(map);
+
+    L.control
+      .scale({
+        metric: true,
+        imperial: false,
+        position: "topright",
+      })
+      .addTo(map);
+  </script>
+</html>
